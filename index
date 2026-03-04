@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ReRun</title>
+  <meta name="theme-color" content="rgb(255, 200, 180)" />
+  <link rel="apple-touch-icon" href="icon.png" />
+  <link rel="icon" type="image/png" href="icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <meta name="apple-mobile-web-app-title" content="ReRun" />
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "@material/web/": "https://esm.run/@material/web/"
+      }
+    }
+  </script>
+  <script type="module">
+    import '@material/web/all.js';
+    import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+    document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+  </script>
+</head>
+<body class="pallete">
+
+<main class="page active" id="home">
+  <h1>ReRun</h1>
+  <div class="big-thing">
+    <span class="material-symbols-outlined hmpglogo">
+      directions_run
+    </span>
+  </div>
+  <div class="card">
+    <!---------- Add kt sini ----------->
+  </div>
+</main>
+
+<main class="page" id="logs">
+  <h1>Logs</h1>
+  <div class="card">
+  </div>
+</main>
+
+<main class="page" id="about">
+  <h1>About</h1>
+  <div class="info">
+    <img src="icon.png" alt="Icon" />
+    <div class="info-text">
+      <div>ReRun</div>
+      <div class="creator">by </div>
+    </div>
+  </div>
+  <div class="another-info">
+  </div>
+</main>
+
+<nav class="bottom-nav">
+  <button class="nav-item active" data-page="home">
+    <span class="material-symbols-outlined">home</span>
+    <span class="nav-label">Home</span>
+  </button>
+  <button class="nav-item" data-page="logs">
+    <span class="material-symbols-outlined">list</span>
+    <span class="nav-label">Logs</span>
+  </button>
+  <button class="nav-item" data-page="about">
+    <span class="material-symbols-outlined">info</span>
+    <span class="nav-label">About</span>
+  </button>
+</nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.nav-item').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.querySelector(`#${btn.dataset.page}`).classList.add('active');
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  });
+
+  document.querySelectorAll('.md-btn').forEach(btn => {
+    btn.addEventListener('click', e => { 
+      e.stopPropagation(); 
+      if(navigator.vibrate) navigator.vibrate(64); 
+    });
+  });
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>
